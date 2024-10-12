@@ -16,10 +16,10 @@ export default function Header() {
       const sections = ['inicio', 'servicios', 'sobre-nosotros', 'por-que-elegirnos', 'contacto'];
       let current = '';
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
+      for (const sectionId of sections) { // Changed variable to 'sectionId'
+        const element = document.getElementById(sectionId);
         if (element && window.scrollY >= element.offsetTop - 100) {
-          current = section;
+          current = sectionId;
         }
       }
 

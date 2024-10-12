@@ -28,7 +28,10 @@ interface FormValues {
 export default function Contacto() {
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
-  const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: FormikHelpers<FormValues>) => {
+  const handleSubmit = async (
+    values: FormValues,
+    { setSubmitting, resetForm }: FormikHelpers<FormValues>
+  ) => {
     try {
       const response = await fetch('https://hook.us1.make.com/y8a4sinpqterncsph25fampfv456noyd', {
         method: 'POST',
@@ -44,7 +47,7 @@ export default function Contacto() {
       } else {
         setSubmitStatus('error');
       }
-    } catch (error) {
+    } catch (_error) { // Prefix to indicate it's intentionally unused
       setSubmitStatus('error');
     } finally {
       setSubmitting(false);

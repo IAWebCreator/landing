@@ -8,7 +8,7 @@ import PorQueElegirnos from '../components/PorQueElegirnos';
 import Contacto from '../components/Contacto';
 import { useEffect } from 'react';
 
-// @ts-expect-error
+// Removed the @ts-expect-error comment
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
