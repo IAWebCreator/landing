@@ -47,7 +47,7 @@ export default function Contacto() {
       } else {
         setSubmitStatus('error');
       }
-    } catch (_error) { // Prefix to indicate it's intentionally unused
+    } catch {
       setSubmitStatus('error');
     } finally {
       setSubmitting(false);
