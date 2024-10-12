@@ -16,7 +16,7 @@ export default function Header() {
       const sections = ['inicio', 'servicios', 'sobre-nosotros', 'por-que-elegirnos', 'contacto'];
       let current = '';
 
-      for (let section of sections) {
+      for (const section of sections) {
         const element = document.getElementById(section);
         if (element && window.scrollY >= element.offsetTop - 100) {
           current = section;

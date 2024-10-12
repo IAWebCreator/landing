@@ -5,11 +5,10 @@ import HeroSection from '../components/HeroSection';
 import Servicios from '../components/Servicios';
 import SobreNosotros from '../components/SobreNosotros';
 import PorQueElegirnos from '../components/PorQueElegirnos';
- // Start of Selection
 import Contacto from '../components/Contacto';
 import { useEffect } from 'react';
 
-// @ts-ignore
+// @ts-expect-error
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

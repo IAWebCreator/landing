@@ -1,6 +1,6 @@
 'use client';
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,10 +19,16 @@ const ContactoSchema = Yup.object().shape({
     .min(10, 'El mensaje debe tener al menos 10 caracteres'),
 });
 
+interface FormValues {
+  nombre: string;
+  email: string;
+  mensaje: string;
+}
+
 export default function Contacto() {
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
-  const handleSubmit = async (values: any, { setSubmitting, resetForm }: any) => {
+  const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: FormikHelpers<FormValues>) => {
     try {
       const response = await fetch('https://hook.us1.make.com/y8a4sinpqterncsph25fampfv456noyd', {
         method: 'POST',
