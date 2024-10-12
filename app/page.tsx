@@ -1,4 +1,3 @@
- // Start of Selection
 'use client';
 
 import HeroSection from '../components/HeroSection';
@@ -8,7 +7,6 @@ import PorQueElegirnos from '../components/PorQueElegirnos';
 import Contacto from '../components/Contacto';
 import { useEffect } from 'react';
 
-// Removed the @ts-expect-error comment
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
