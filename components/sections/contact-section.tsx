@@ -18,7 +18,7 @@ export function ContactSection() {
           eyebrow="Hablemos"
           align="center"
           title="Cuéntanos el reto de tu organización"
-          description="Escríbenos directo por WhatsApp o correo. Respondemos en menos de 48 horas hábiles con el siguiente paso recomendado."
+          description="Respondemos en menos de 48 horas hábiles."
           className="mx-auto"
         />
 
@@ -33,12 +33,6 @@ export function ContactSection() {
                 className="object-contain p-1"
               />
             </span>
-
-            <p className="max-w-md text-sm leading-relaxed text-cream-muted">
-              Ya sea que necesites un diagnóstico inicial, protocolos operativos o capacitación
-              para tu equipo, cuéntanos tu contexto y te orientamos sobre el mejor punto de
-              partida.
-            </p>
 
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <a

@@ -11,7 +11,7 @@ export function ServicesSection() {
         <SectionHeading
           eyebrow="Qué hacemos"
           title="Servicios de consultoría en bienestar animal"
-          description="Del diagnóstico a la ejecución en campo: cubrimos cada etapa que una organización necesita para incluir animales de forma responsable."
+          description="Del diagnóstico a la ejecución en campo."
         />
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

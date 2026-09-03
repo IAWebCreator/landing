@@ -33,21 +33,18 @@ export function SectorsSection() {
           <div className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="Para quién trabajamos"
-              title="Asesoramos a cualquier organización que conviva con animales"
-              description="Nuestro origen está en la seguridad canina, y hoy acompañamos a empresas públicas y privadas de sectores muy distintos con el mismo estándar técnico."
+              title="Cualquier organización que conviva con animales"
+              description="Nuestro origen está en la seguridad canina; hoy asesoramos a sectores muy distintos con el mismo estándar técnico."
             />
 
-            <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <ul className="mt-8 flex flex-wrap gap-2.5">
               {SECTORS.map((sector, index) => (
-                <Reveal key={sector.title} delay={index * 50} as="li">
-                  <div className="flex items-start gap-3 rounded-card border border-line bg-shell p-4">
-                    <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-chip bg-paper text-brand-green-dark shadow-card">
-                      <Icon name={sector.icon} className="h-5 w-5" />
+                <Reveal key={sector.title} delay={index * 45} as="li">
+                  <div className="flex items-center gap-2 rounded-chip border border-line bg-shell py-2 pl-2.5 pr-4">
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-paper text-brand-green-dark shadow-card">
+                      <Icon name={sector.icon} className="h-3.5 w-3.5" />
                     </span>
-                    <div>
-                      <h3 className="font-display text-sm font-bold text-ink">{sector.title}</h3>
-                      <p className="mt-1 text-sm leading-snug text-ink-muted">{sector.description}</p>
-                    </div>
+                    <span className="font-display text-sm font-semibold text-ink">{sector.title}</span>
                   </div>
                 </Reveal>
               ))}
