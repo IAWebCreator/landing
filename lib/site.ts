@@ -6,6 +6,7 @@
  */
 export const SITE_NAME = "Caninos & Consultores";
 export const SITE_TAGLINE = "Especialistas en bienestar animal";
+export const SITE_URL = "https://www.caninosyconsultores.com";
 export const PARENT_BRAND = "Spatitas";
 export const PARENT_BRAND_URL = "https://www.spatitas.com.co/";
 
