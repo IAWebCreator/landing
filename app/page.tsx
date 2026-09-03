@@ -1,27 +1,21 @@
-'use client';
-
-import HeroSection from '../components/HeroSection';
-import Servicios from '../components/Servicios';
-import SobreNosotros from '../components/SobreNosotros';
-import PorQueElegirnos from '../components/PorQueElegirnos';
-import Contacto from '../components/Contacto';
-import { useEffect } from 'react';
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { HeroSection } from "@/components/sections/hero-section";
+import { ServicesSection } from "@/components/sections/services-section";
+import { SectorsSection } from "@/components/sections/sectors-section";
+import { MethodologySection } from "@/components/sections/methodology-section";
+import { AboutSection } from "@/components/sections/about-section";
+import { ClosingCta } from "@/components/sections/closing-cta";
+import { ContactSection } from "@/components/sections/contact-section";
 
 export default function Home() {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
   return (
     <main>
       <HeroSection />
-      <Servicios />
-      <SobreNosotros />
-      <PorQueElegirnos />
-      <Contacto />
+      <ServicesSection />
+      <SectorsSection />
+      <MethodologySection />
+      <AboutSection />
+      <ClosingCta />
+      <ContactSection />
     </main>
   );
 }

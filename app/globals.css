@@ -2,46 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts are injected by next/font in app/layout.tsx; these are the fallbacks
+   used before the variables resolve. */
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --font-sans: 'Montserrat', 'Lato', sans-serif;
-  --font-serif: 'Merriweather', 'Playfair Display', serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --font-sans: "Nunito", system-ui, sans-serif;
 }
 
 body {
-  @apply bg-background text-gray-800 font-sans;
-  scroll-behavior: smooth;
-  padding-top: 80px; /* Ajusta este valor según la altura del header */
+  @apply bg-shell font-sans text-ink antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Headings set their own ragged edge rather than leaving one word stranded on
+   the last line; body copy only avoids the orphan. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background-color: #ffe020;
+  color: #142117;
+}
+
+/* One focus ring for the whole site. Keyboard users get a consistent target;
+   pointer users never see it. */
+:focus-visible {
+  outline: 2px solid #28582f;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Anchored sections have to clear the fixed header when they are scrolled to. */
+[id] {
+  scroll-margin-top: 6rem;
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
+@layer components {
+  /* Yellow marker stroke behind a word — the brand's signature emphasis, and
+     the one place the shop's yellow survives on a page this dark-green. */
+  .marker {
+    background-image: linear-gradient(#ffe020, #ffe020);
+    background-repeat: no-repeat;
+    background-size: 100% 0.4em;
+    background-position: 0 84%;
+    padding-inline: 0.12em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* The same highlight for dark grounds. The stroke variant only paints the
+     bottom of the line, so cream text over it lands at about 1.2:1; filling the
+     word and flipping it to ink reads at 12.6:1 instead. */
+  .marker-solid {
+    background-color: #ffe020;
+    color: #142117;
+    padding-inline: 0.16em;
+    border-radius: 0.1em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+/* -----------------------------------------------------------------------------
+ * Tiled paw print, lifted from the Spatitas packaging.
+ *
+ * Rationed to at most one surface per screenful: repeated everywhere it stops
+ * reading as a signature and becomes the page's default texture. A fine 124px
+ * tile keeps it grain rather than wallpaper at card width.
+ * -------------------------------------------------------------------------- */
+.paw-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%2360a040' fill-opacity='0.04'%3E%3Cellipse cx='30' cy='42' rx='7' ry='9' transform='rotate(-20 30 42)'/%3E%3Cellipse cx='46' cy='33' rx='7' ry='9' transform='rotate(-7 46 33)'/%3E%3Cellipse cx='62' cy='35' rx='7' ry='9' transform='rotate(9 62 35)'/%3E%3Cellipse cx='76' cy='46' rx='7' ry='9' transform='rotate(22 76 46)'/%3E%3Cpath d='M53 52c12 0 22 8 22 17 0 8-7 12-15 12-3 0-5 1-7 1s-4-1-7-1c-8 0-15-4-15-12 0-9 10-17 22-17z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 124px 124px;
 }
 
-.animate-bounce {
-  animation: bounce 1s infinite;
+.paw-field-deep {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23fff8e0' fill-opacity='0.035'%3E%3Cellipse cx='30' cy='42' rx='7' ry='9' transform='rotate(-20 30 42)'/%3E%3Cellipse cx='46' cy='33' rx='7' ry='9' transform='rotate(-7 46 33)'/%3E%3Cellipse cx='62' cy='35' rx='7' ry='9' transform='rotate(9 62 35)'/%3E%3Cellipse cx='76' cy='46' rx='7' ry='9' transform='rotate(22 76 46)'/%3E%3Cpath d='M53 52c12 0 22 8 22 17 0 8-7 12-15 12-3 0-5 1-7 1s-4-1-7-1c-8 0-15-4-15-12 0-9 10-17 22-17z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 124px 124px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Motion
+ *
+ * `rise-in` runs on mount and is only used above the fold, where there is
+ * nothing to scroll into view yet. Everything below is revealed by <Reveal>,
+ * which observes the viewport instead.
+ * ------------------------------------------------------------------------ */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+/* <Reveal> ships its hidden state in the HTML and undoes it from an
+   IntersectionObserver. With no scripting there is nothing to undo it, so show
+   the content rather than leaving a blank page behind. */
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none !important;
+  }
 }

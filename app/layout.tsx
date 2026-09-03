@@ -1,24 +1,31 @@
 import type { Metadata } from "next";
-import { Montserrat, Merriweather } from 'next/font/google';
+import { Fredoka, Nunito } from "next/font/google";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  weight: ['300', '400', '700'],
+const nunito = Nunito({
+  variable: "--font-sans",
+  subsets: ["latin"],
 });
-const merriweather = Merriweather({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  weight: ['300', '400', '700', '900'],
+
+const fredoka = Fredoka({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Caninos & Consultores",
-  description: "Especialistas en bienestar animal canino y evaluación profesional de unidades caninas de élite",
+  title: `${SITE_NAME} | Consultoría en bienestar animal`,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Consultoría en bienestar animal`,
+    description: SITE_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
@@ -27,11 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${montserrat.variable} ${merriweather.variable}`}>
-      <body>
-        <Header />
+    <html lang="es" className={`${nunito.variable} ${fredoka.variable}`}>
+      <body className="bg-shell font-sans text-ink antialiased">
+        <SiteHeader />
         {children}
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );
